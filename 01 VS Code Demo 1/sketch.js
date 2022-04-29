@@ -11,5 +11,12 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  //background(220);
+  circle(mouseX, height/2, 100);
+  print(frameCount);
+}
+
+
+function keyPressed(){
+  background(255, 200, 150);
 }
