@@ -6,10 +6,19 @@
 let extraCanvas;
 let colValue = 0;
 
+let circleX, circleY;
+let circleXSpeed, circleYSPeed;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   extraCanvas = createGraphics(width, height);
+  circleX = width / 2;
+  circleY = height / 2;
+  circleXSpeed = random(-8,8);
+  circleYSPeed = random(-8,8);
+
+  DVD = loadImage("assets/DVD_logo.svg.png")
 }
 
 function draw() {
@@ -19,6 +28,7 @@ function draw() {
   drawName();
   colorPicker();
   wipeArt();
+  autoObject();
 }
 
 //allow the program to read the input from the user
@@ -40,9 +50,8 @@ function keyPressed() {
   }
 }
 
-//change colour with number keys
+//change colour with 1, 2, 3 keys
 function changeColor() {
-  
   if (key === '1' && keyIsPressed) {
     colValue = color( random(255), 0, 0);
     print(colValue);
@@ -84,9 +93,25 @@ function colorPicker(){
   rect( width - 100, height -100, 50, 50);
 }
 
+//clear the canvas with spacebar
 function wipeArt(){
   if (keyIsDown(32)){
-    etraCanvas.clear();
+    extraCanvas.clear();
     print("cleared")
   }
 }
+
+function autoObject(){
+  //create object that moves at random
+  //movement
+  circleX += circleXSpeed;
+  circleY += circleYSPeed;
+  //bounce/
+  if (circleY <= 0 || circleY >= height){
+    circleYSPeed = circleYSPeed * -1; //circleYSpeed * -1
+  }
+  if (circleX <= 0 || circleX >= width){
+    circleXSpeed = circleXSpeed * -1;
+  }
+  image(DVD, circleX, circleY, 50, 30);
+}1
