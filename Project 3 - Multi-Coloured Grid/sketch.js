@@ -21,6 +21,7 @@ function drawGrid() {
   //use a loop inside of another loop to get a set of (x, y) locations
   for (let x = 0; x < width; x += SPACING) { //repeat 5  (0,1,2,4)
     for (let y = 0; y < height; y += SPACING) {
+      //only random from range of (random red and random blue)
       fill(random(255), 0, random(255));
       rect(x,y,SPACING);
     }
