@@ -2,6 +2,9 @@
 // Ben Schoenfeld
 // May 16th, 2022
 //
+// Create a random range of rectangles to resemble a terrain
+//use noise() to create random height values
+//have the program place a flag on the tallest rectangle
 
 
 let rectWidth = 10;
@@ -21,6 +24,7 @@ function draw() {
   clearScreen();
 }
 
+//function that creates the random terrain
 function regularRandomTerrain() {
   background(255);
   fill(0);
@@ -47,7 +51,7 @@ function regularRandomTerrain() {
 
 
 function clearScreen() {
-  //clear the canvas
+  //clear the canvas with spacebar
   if (keyIsDown(32)) {
     clear()
     regularRandomTerrain();
@@ -56,6 +60,7 @@ function clearScreen() {
 
 }
 
+//increase or decrease the size by clicking left or right arrows
 function increaseSize() {
 
   if (keyIsDown(37)) {
