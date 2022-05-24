@@ -6,24 +6,23 @@
 // - describe what you did to take this project "above and beyond"
 
 
-let myCars;
+let myCar;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  let col = color(random(255), random(255), random(255));
+  myCar = new Cars(width/3, height/3, 1);
 
 }
 
 function draw() {
   background(255);
   drawRoad();
-  //myCars.display();
-  drawCar();
-  
+  myCar.action();
 }
 
 function drawRoad() {
+  rectMode(CORNER);
   noStroke();
   fill(0);
   rect(0, height / 4, width, height / 2);
@@ -37,44 +36,63 @@ function drawRoad() {
 
 
 class Cars {
-  //class constructor (inc. properties)
-  constructor(x, y, diameter) {
+  constructor(x, y, dir) {
     this.x = x;
-    this.y = y;
-    //this.speed
-    this.size = 10;
+    this.y = y; 
+    this.dir = dir;
+    this.type = int(random(2));
+    this.c = color(random(255), random(255), random(255));
+   
+    if (this.dir === 0){
+      this.speed = 10;
+    } else {
+      this.speed = -10;
+    }
+
+
+
+    
 
   }
 
-  // move() {
+  action() {
+    this.move();
+    this.display();
+
+  }
 
 
-  // }
+
+
+  move() {
+    this.x += this.speed;
+    if (this.x <= 0 && this.dir === 1) {
+      this.x += width;
+    } else if (this.x >= width && this.dir === 0){
+      this.x -= width;
+    }
+  }
 
   display() {
     rectMode(CENTER);
+    noStroke();
+    
+    if (this.type === 0) {
+    fill(200)
+    rect(this.x+15, this.y, 10, 35);
+    rect(this.x-15, this.y, 10, 35);
+    
     fill(this.c)
-    rect(this.x, this.y, this.size, this.size);
+    rect(this.x, this.y, 50, 30);
+
+    
 
 
+    } else {
+      fill(this.c);
+      rect(this.x, this.y, 60, 50);
+    }
   }
 
 }
 
-
-function drawCar() {
-noStroke();
-if(mouseButton === LEFT && mouseIsPressed) {
-   print("LEFT");
-    
-    fill(100);
-    rect(mouseX+5, mouseY-3, 10, 27);
-    rect(mouseX+30, mouseY-3, 10, 27);
-
-    fill(255, 0, 0);
-    rect(mouseX, mouseY, 45, 20);
-  
-}
-   
-
-}
