@@ -4,22 +4,62 @@
 //
 // DESCRIBE
 
-
 let markers = [];
 let currentlyDragging = false; //global variable flag for 
 //                              if we are currently moving something
 
+let gridSize = 10;
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(800, 600);
 }
 
 function draw() {
   background(220);
+  drawVoronoi();
   for(let m of markers){
     m.move();
     m.display();
   }
 }
+
+
+
+function drawVoronoi() {
+  //render a voronoi diagram based on the onjects stored in markers
+noStroke();
+  for (let x = 0; x < width; x+= gridSize) { 
+    for (let y = 0; y < height; y += gridSize) {
+      setFill(x,y);
+      square(x,y,gridSize);
+    }
+  }
+}
+
+function setFill(x, y) {
+  //given a particular location (x,y), determine the
+  //closest marker and fill value to its region color
+
+  let minDist = -1;
+  let minIndex = -1;
+  for(let i = 0; i < markers.length; i++) {
+    let currentDist = dist(x, y, markers[i].x, markers[i].y); // minDist = 25  current = 25
+    if (currentDist < minDist || minDist === -1) {
+      minDist = currentDist;
+      minIndex = i;
+    }
+  }
+  if (minIndex !== -1) { // indicates there is atleast one marker
+    fill(markers[minIndex].regionColor);
+
+  } else {
+    fill(200);
+
+
+  }
+}
+
+
 
 function keyPressed(){
   if(key===" "){
@@ -39,6 +79,10 @@ class MovableMarker{
     this.beingDragged = false; 
     this.radius = 7;
     this.diameter = this.radius * 2;
+
+    //regions
+    this.regionColor = color(random(255), random(255), random(255), 150);
+    this.regionArea = 0;
   }
 
 
@@ -66,6 +110,7 @@ class MovableMarker{
   }
 
   display(){
+    stroke(0);
     if(this.mouseIsOver()){
       fill(this.hoverColor);
     }
@@ -86,5 +131,17 @@ class MovableMarker{
     }
   }
   
+  regionAdd() {
+    //increase the count of squares closest to point
+    this.regionArea++;
+
+  }
+
+  resetCount() {
+    this.regionArea = 0;
+  }
+
+
+
 
 }
