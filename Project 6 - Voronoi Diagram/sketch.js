@@ -2,21 +2,30 @@
 // Ben Schoenfeld
 // May 27, 2022
 //
-// DESCRIBE
+// Use the properties of a Voronoi diagram to determine the
+// optimal distance between schools - including moveable markers
+//
+//Expert: Add a star to indicate the new building at the appropiate position (inherit from Markers)
 
 let markers = [];
 let currentlyDragging = false; //global variable flag for 
-//                              if we are currently moving something
+//if we are currently moving something
 
 let gridSize = 10;
 let activeRender = true;
 
+function preload() {
+  img = loadImage('assets/SaskatoonSection.png')
+}
+
+
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(img.width, img.height);
 }
 
 function draw() {
   background(220);
+  image(img, 0, 0);
   drawVoronoi();
   for (let m of markers) {
     m.move();
@@ -30,7 +39,7 @@ function drawVoronoi() {
   //render a voronoi diagram based on the 
   //objects stored in markers
 
-  for(let m of markers) {
+  for (let m of markers) {
     m.resetCount();
   }
 
@@ -69,14 +78,16 @@ function setFill(x, y) {
   }
 }
 
-
-
+// space for circle marler    s for star marker
 function keyPressed() {
+  if (key === "s") {
+    markers.push(new Star(mouseX, mouseY))
+  }
   if (key === " ") {
     markers.push(new MovableMarker(mouseX, mouseY));
   }
-  if(keyCode === 16) { //left shift
-    activeRender = ! activeRender;[]
+  if (keyCode === 16) { //left shift
+    activeRender = !activeRender;[]
   }
 }
 
@@ -132,7 +143,7 @@ class MovableMarker {
     }
     circle(this.x, this.y, this.diameter);
     fill(0);
-    text(round(this.regionArea / (width/gridSize * height/gridSize) * 100), this.x, this.y + 20);
+    text(round(this.regionArea / (width / gridSize * height / gridSize) * 100), this.x, this.y + 20);
   }
 
   mouseIsOver() {
@@ -149,14 +160,40 @@ class MovableMarker {
   regionAdd() {
     //increase the count of squares closest to point
     this.regionArea++;
-
   }
 
   resetCount() {
     this.regionArea = 0;
   }
+}
 
 
 
+//// Star Class for star-shaped marker
+class Star extends MovableMarker {
+  constructor(x, y) {
+    super(x, y);
 
+  }
+
+  display() {
+    fill(0, 0, 255);
+    star(this.x, this.y, 5, 15, 5)
+    text(round(this.regionArea / (width / gridSize * height / gridSize) * 100), this.x, this.y + 20);
+  }
+}
+
+function star(x, y, radius1, radius2, npoints) {
+  let angle = TWO_PI / npoints;
+  let halfAngle = angle / 2.0;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = x + cos(a) * radius2;
+    let sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a + halfAngle) * radius1;
+    sy = y + sin(a + halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
 }
