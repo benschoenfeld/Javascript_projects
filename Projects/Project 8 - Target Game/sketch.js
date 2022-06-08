@@ -30,4 +30,10 @@ function quickInput() {
   if (keyIsDown(RIGHT_ARROW)) {
     currentGame.changeAngle(false);
   }
+  if (keyIsDown(UP_ARROW)) {
+    currentGame.changePower(true);
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    currentGame.changePower(false);
+  }
 }
