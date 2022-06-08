@@ -18,18 +18,28 @@ function setup() {
 }
 
 function draw() {
+  background(0);
   currentGame.play();
   quickInput();
 }
 
+// press space to take a shot after determining power
+function keyPressed() {
+  if (key === " ") {
+    currentGame.createShot();
+  }
+}
+
 
 function quickInput() {
+  //change cannon angle with left/right arrow keys
   if (keyIsDown(LEFT_ARROW)) {
     currentGame.changeAngle(true);
   }
   if (keyIsDown(RIGHT_ARROW)) {
     currentGame.changeAngle(false);
   }
+  // Change the power with the up/down arrow keys
   if (keyIsDown(UP_ARROW)) {
     currentGame.changePower(true);
   }
