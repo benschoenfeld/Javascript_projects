@@ -42,6 +42,7 @@ class Game {
         //draw the cannon
         this.displayCannon();
         this.displayPower();
+        //this.displayCannonCount();
     }
 
     createShot() {
@@ -88,12 +89,9 @@ class Game {
         }
     }
 
-
     displayCannonCount() {
-        for (let i = 0; i < 10; i++) {
-            image()
+        for (i = 0; i < 20; i++) {
+            image(shotsRemainingImages, 0, 0);
         }
     }
-
-
 }
