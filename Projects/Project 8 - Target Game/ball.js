@@ -34,6 +34,13 @@ class Ball {
         if (this.pos.y > 546) {
             this.alive = false;
             this.collisionType = 1;
+            
+            //smoke when ground hit
+            for(let i = 0; i < 50; i++) {
+                particles.push(new Particle(this.pos.x, this.pos.y));
+            }
         }
     }
+
+    
 }

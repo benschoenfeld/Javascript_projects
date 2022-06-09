@@ -4,9 +4,12 @@ class Game {
         this.cannonAngle = 60;
         this.cannonPower = 10;
         this.shots = [];
+        this.shotsLeft = 20;
+        this.target = new Target();
     }
 
     play() {
+        
         //called once per frame (acts like draw)
         imageMode(CORNER);
         image(backImage, 0, 0);
@@ -33,7 +36,14 @@ class Game {
         }
 
         //process and draw every smoke particle
-
+        for (let i = 0; i < particles.length; i++) {
+            let p = particles[i];
+            p.display();
+            p.move();
+            if (p.lifetime < 0) {
+                particles.splice(i, 1);
+            }
+        }
         //process and draw every explosion that is active
 
 
@@ -42,13 +52,17 @@ class Game {
         //draw the cannon
         this.displayCannon();
         this.displayPower();
-        //this.displayCannonCount();
+        this.displayCannonCount();
+        this.target.display();
     }
 
     createShot() {
+    if (this.shotsLeft > 0) {
         let v = createVector(this.cannonPower * cos(radians(this.cannonAngle)),
             this.cannonPower * sin(radians(this.cannonAngle) * -1));
         this.shots.push(new Ball(v));
+        this.shotsLeft--;
+        }
     }
 
     displayCannon() {
@@ -90,8 +104,7 @@ class Game {
     }
 
     displayCannonCount() {
-        for (i = 0; i < 20; i++) {
-            image(shotsRemainingImages, 0, 0);
-        }
+        
+            image(shotsRemainingImages[this.shotsLeft], width/2, 50);
     }
 }

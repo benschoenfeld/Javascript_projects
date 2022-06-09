@@ -9,6 +9,7 @@ let baseImage, cannonballImage, targetImage;
 let explosionImages = [];
 let shotsRemainingImages = [];
 let targetsHitImages = [];
+let particles = [];
 
 let currentGame;
 
@@ -27,6 +28,12 @@ function draw() {
 function keyPressed() {
   if (key === " ") {
     currentGame.createShot();
+  }
+}
+
+function mousePressed() {
+  for(let i = 0; i < 20; i++) {
+    particles.push(new Particle());
   }
 }
 
