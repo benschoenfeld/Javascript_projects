@@ -1,3 +1,4 @@
+
 class Ball {
 
     constructor(v_) {
@@ -7,11 +8,13 @@ class Ball {
         this.alive = true;
         this.collisionType = 0;  //1 - Ground   2 - Target
                                  //0 - No collision
+        
     }
 
     move() {
         this.pos.add(this.velocity);
         this.velocity.add(this.gravity);
+        
     }
 
     display() {
@@ -19,6 +22,7 @@ class Ball {
         translate(this.pos.x, this.pos.y);
         image(cannonballImage, 0, 0);
         pop();
+        //print(this.pos.x, this.pos.y);
     }
 
     getAlive() {

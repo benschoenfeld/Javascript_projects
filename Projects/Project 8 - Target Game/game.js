@@ -9,11 +9,10 @@ class Game {
     }
 
     play() {
-        
+
         //called once per frame (acts like draw)
         imageMode(CORNER);
         image(backImage, 0, 0);
-
         imageMode(CENTER);
 
         //process and draw every cannonball
@@ -47,21 +46,24 @@ class Game {
         //process and draw every explosion that is active
 
 
-        //draw the correct image for number of shots left and targets hit
+
 
         //draw the cannon
         this.displayCannon();
         this.displayPower();
         this.displayCannonCount();
+        //this.displayTargetsHit();
         this.target.display();
+        //this.ballTargetCollision();
+        
     }
 
     createShot() {
-    if (this.shotsLeft > 0) {
-        let v = createVector(this.cannonPower * cos(radians(this.cannonAngle)),
-            this.cannonPower * sin(radians(this.cannonAngle) * -1));
-        this.shots.push(new Ball(v));
-        this.shotsLeft--;
+        if (this.shotsLeft > 0) {
+            let v = createVector(this.cannonPower * cos(radians(this.cannonAngle)),
+                this.cannonPower * sin(radians(this.cannonAngle) * -1));
+            this.shots.push(new Ball(v));
+            this.shotsLeft--;
         }
     }
 
@@ -104,7 +106,19 @@ class Game {
     }
 
     displayCannonCount() {
-        
-            image(shotsRemainingImages[this.shotsLeft], width/2, 50);
+        image(shotsRemainingImages[this.shotsLeft], width / 2, 50);
     }
+
+    // displayTargetsHit() {
+
+    //     image(targetsHitImages[this.targetsLeft], 50, 50)
+    // }
+    
+
+
+    // ballTargetCollision() {
+    //     if (dist(mouseX, mouseY, ) < this.radius) {
+    //         print("yes");
+    //     }
+    // }
 }

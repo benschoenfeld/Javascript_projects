@@ -13,6 +13,9 @@ let particles = [];
 
 let currentGame;
 
+
+
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   currentGame = new Game();

@@ -1,5 +1,5 @@
 // Point-Cirlce Collision Demo
-let cX = 500;  let cY = 300;
+let cX = 600;  let cY = 300;
 let cDiameter = 250;
 let cRadius = cDiameter/2;
 
@@ -12,6 +12,7 @@ function setup() {
 function draw() {
   background(220);
 
+  ellipse(mouseX, mouseY, cDiameter, cRadius);
   //is the distance between the mouse pointer
   //and the circle's centerpoint (cX, cY) < radius
   if(dist(mouseX, mouseY, cX, cY) < cRadius){
