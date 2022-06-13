@@ -2,6 +2,14 @@
 // Ben Schoenfeld
 // June 6, 2022
 
+//CHECKLIST
+// Variable Power - DONE
+// Target Practice - DONE
+// Add Explosion - DONE 
+// Cannonball Storage - DONE
+// Keep Track of Targets Hit - 
+// Determine Victory - 
+// Smoke on Miss - DONE
 
 // Images to load 
 let backImage, backImageReport, barrelImage;
@@ -10,11 +18,9 @@ let explosionImages = [];
 let shotsRemainingImages = [];
 let targetsHitImages = [];
 let particles = [];
+let explosions = [];
 
 let currentGame;
-
-
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -34,11 +40,7 @@ function keyPressed() {
   }
 }
 
-function mousePressed() {
-  for(let i = 0; i < 20; i++) {
-    particles.push(new Particle());
-  }
-}
+
 
 
 function quickInput() {

@@ -5,7 +5,9 @@ class Game {
         this.cannonPower = 10;
         this.shots = [];
         this.shotsLeft = 20;
+        this.targetsLeft = 20;
         this.target = new Target();
+        
     }
 
     play() {
@@ -21,16 +23,15 @@ class Game {
             b.move();
             b.display();
             b.checkGroundCollision();
+            b.ballTargetCollision();
 
 
             // check the target collision
             if (b.getAlive() === false) {
-                if (b.gotCollisionType() === 1) {
                     //ground collision case
                     // create/spawn a bunch of smoke particles
                     this.shots.splice(i, 1);
-                    i--;
-                }
+                    i--; 
             }
         }
 
@@ -44,17 +45,23 @@ class Game {
             }
         }
         //process and draw every explosion that is active
-
+        for (let i = 0; i < explosions.length; i++) {
+            let e = explosions[i];
+            e.display();
+        }
 
 
 
         //draw the cannon
         this.displayCannon();
         this.displayPower();
+        
+        
+        // draw other components 
         this.displayCannonCount();
-        //this.displayTargetsHit();
+        this.displayTargetsHit();
         this.target.display();
-        //this.ballTargetCollision();
+        
         
     }
 
@@ -106,19 +113,15 @@ class Game {
     }
 
     displayCannonCount() {
-        image(shotsRemainingImages[this.shotsLeft], width / 2, 50);
+        image(shotsRemainingImages[this.shotsLeft], 500, 50);
     }
 
-    // displayTargetsHit() {
+    displayTargetsHit() {
 
-    //     image(targetsHitImages[this.targetsLeft], 50, 50)
-    // }
+        image(targetsHitImages[this.targetsLeft], width - 80, 50)
+    }
     
 
 
-    // ballTargetCollision() {
-    //     if (dist(mouseX, mouseY, ) < this.radius) {
-    //         print("yes");
-    //     }
-    // }
+    
 }

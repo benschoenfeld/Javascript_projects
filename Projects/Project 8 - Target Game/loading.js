@@ -6,8 +6,8 @@ function preload() {
     cannonballImage = loadImage("assets/cannonball.png");
     targetImage = loadImage("assets/target.png");
   
-    for (let i = 1; i < 6; i++) {
-      explosionImages[i] = loadImage("assets/ex" + i + ".png");
+    for (let i = 1; i <= 6; i++) {
+      explosionImages[i-1] = loadImage("assets/ex" + i + ".png");
     }
   
     for (let i = 0; i < 21; i++) {

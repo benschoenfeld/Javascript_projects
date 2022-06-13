@@ -8,7 +8,8 @@ class Ball {
         this.alive = true;
         this.collisionType = 0;  //1 - Ground   2 - Target
                                  //0 - No collision
-        
+        this.diameter = 40;
+        this.radius = this.diameter /2; 
     }
 
     move() {
@@ -46,5 +47,13 @@ class Ball {
         }
     }
 
-    
+    ballTargetCollision() {
+        if (dist(this.pos.x, this.pos.y, currentGame.target.x, currentGame.target.y) < this.radius + currentGame.target.radius) {
+            this.collisionType = 2;
+            currentGame.target = new Target();
+            currentGame.targetsLeft--;
+            explosions.push( new Explosion(this.pos.x, this.pos.y));
+            this.alive = false;
+        }
+    }
 }
