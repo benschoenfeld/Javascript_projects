@@ -54,6 +54,7 @@ class Ball {
             currentGame.targetsLeft--;
             explosions.push( new Explosion(this.pos.x, this.pos.y));
             this.alive = false;
+            currentGame.targetTracker++;
         }
     }
 }

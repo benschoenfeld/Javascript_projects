@@ -7,6 +7,7 @@ class Game {
         this.shotsLeft = 20;
         this.targetsLeft = 20;
         this.target = new Target();
+        this.targetTracker = 0;
         
     }
 
@@ -61,6 +62,7 @@ class Game {
         this.displayCannonCount();
         this.displayTargetsHit();
         this.target.display();
+        this.displayScore();
         
         
     }
@@ -121,7 +123,22 @@ class Game {
         image(targetsHitImages[this.targetsLeft], width - 80, 50)
     }
     
+    displayScore() {
+        if (this.shotsLeft === 0) {
+            
+            imageMode(CORNER);
+            image(backImageReport, 0, 0);
+            textAlign(CENTER);
+            textSize(50);
+            fill(255);
 
+
+
+        if (this.targetTracker > 17){ }
+            text("You Win !");
+            text("Your Score Was " + this.targetTracker + "/20", width/2, height/3);
+        }
+    }
 
     
 }
