@@ -7,7 +7,7 @@
 // Target Practice - DONE
 // Add Explosion - DONE 
 // Cannonball Storage - DONE
-// Keep Track of Targets Hit - 
+// Keep Track of Targets Hit - DONE 
 // Determine Victory - 
 // Smoke on Miss - DONE
 
@@ -37,6 +37,10 @@ function draw() {
 function keyPressed() {
   if (key === " ") {
     currentGame.createShot();
+  }
+
+  if (keyCode === ENTER && currentGame.shotsLeft === 0) {
+    currentGame = new Game();
   }
 }
 

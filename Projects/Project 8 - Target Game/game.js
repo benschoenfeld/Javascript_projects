@@ -8,7 +8,7 @@ class Game {
         this.targetsLeft = 20;
         this.target = new Target();
         this.targetTracker = 0;
-        
+
     }
 
     play() {
@@ -29,10 +29,10 @@ class Game {
 
             // check the target collision
             if (b.getAlive() === false) {
-                    //ground collision case
-                    // create/spawn a bunch of smoke particles
-                    this.shots.splice(i, 1);
-                    i--; 
+                //ground collision case
+                // create/spawn a bunch of smoke particles
+                this.shots.splice(i, 1);
+                i--;
             }
         }
 
@@ -56,15 +56,15 @@ class Game {
         //draw the cannon
         this.displayCannon();
         this.displayPower();
-        
-        
+
+
         // draw other components 
         this.displayCannonCount();
         this.displayTargetsHit();
         this.target.display();
         this.displayScore();
-        
-        
+
+
     }
 
     createShot() {
@@ -122,10 +122,10 @@ class Game {
 
         image(targetsHitImages[this.targetsLeft], width - 80, 50)
     }
-    
+
     displayScore() {
-        if (this.shotsLeft === 0) {
-            
+        if (this.shotsLeft === 0 && this.shots.length === 0) {
+
             imageMode(CORNER);
             image(backImageReport, 0, 0);
             textAlign(CENTER);
@@ -133,12 +133,31 @@ class Game {
             fill(255);
 
 
+            //a
+            if (this.targetTracker <= 20 && this.targetTracker >= 16) {
+                text("A", width / 2, height / 2 - 50);
+                text("Your Score Was " + this.targetTracker + "/20", width / 2, height / 3);
+            }
 
-        if (this.targetTracker > 17){ }
-            text("You Win !");
-            text("Your Score Was " + this.targetTracker + "/20", width/2, height/3);
+            //b
+            if (this.targetTracker < 15 && this.targetTracker >= 13) {
+                text("B", width / 2, height / 2 - 50);
+                text("Your Score Was " + this.targetTracker + "/20", width / 2, height / 3)
+
+            }
+
+            //c
+            if (this.targetTracker <= 12 && this.targetTracker >= 10) {
+                text("C", width / 2, height / 2 - 50);
+                text("Your Score Was " + this.targetTracker + "/20", width / 2, height / 3);
+            }
+
+            //lose
+            if (this.targetTracker < 9) {
+                text("You Lost", width / 2, height / 2 - 50);
+                text("Your Score Was " + this.targetTracker + "/20", width / 2, height / 3);
+            }
+
         }
     }
-
-    
 }
