@@ -51,12 +51,9 @@ class Game {
             e.display();
         }
 
-
-
         //draw the cannon
         this.displayCannon();
         this.displayPower();
-
 
         // draw other components 
         this.displayCannonCount();
@@ -67,6 +64,7 @@ class Game {
 
     }
 
+    //add ball to ball array (until 0)
     createShot() {
         if (this.shotsLeft > 0) {
             let v = createVector(this.cannonPower * cos(radians(this.cannonAngle)),
@@ -114,10 +112,12 @@ class Game {
         }
     }
 
+    //display shots left
     displayCannonCount() {
         image(shotsRemainingImages[this.shotsLeft], 500, 50);
     }
 
+    //display target amount
     displayTargetsHit() {
 
         image(targetsHitImages[this.targetsLeft], width - 80, 50)

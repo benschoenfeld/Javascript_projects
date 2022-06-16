@@ -1,6 +1,8 @@
 // Target Game
 // Ben Schoenfeld
 // June 6, 2022
+// Create a target shooting game with cannonballs and 
+// randomly placed targets. Score above 9 to win !
 
 //CHECKLIST
 // Variable Power - DONE
@@ -8,7 +10,7 @@
 // Add Explosion - DONE 
 // Cannonball Storage - DONE
 // Keep Track of Targets Hit - DONE 
-// Determine Victory - 
+// Determine Victory - DONE
 // Smoke on Miss - DONE
 
 // Images to load 
@@ -39,6 +41,7 @@ function keyPressed() {
     currentGame.createShot();
   }
 
+  //press enter to restart game
   if (keyCode === ENTER && currentGame.shotsLeft === 0) {
     currentGame = new Game();
   }

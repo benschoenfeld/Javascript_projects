@@ -35,7 +35,7 @@ class Ball {
     }
 
     checkGroundCollision() {
-        //546
+        //546 is ground level
         if (this.pos.y > 546) {
             this.alive = false;
             this.collisionType = 1;
@@ -47,6 +47,7 @@ class Ball {
         }
     }
 
+    //check for ball-target collision
     ballTargetCollision() {
         if (dist(this.pos.x, this.pos.y, currentGame.target.x, currentGame.target.y) < this.radius + currentGame.target.radius) {
             this.collisionType = 2;
