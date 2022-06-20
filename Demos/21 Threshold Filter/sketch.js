@@ -1,8 +1,9 @@
 // Pixels Array Demo
-// Threshold Effect
+// Threshold Effect 
 // June 16, 2022
 
 let sourceImage;
+let threshold = 128;
 
 function preload() {
   sourceImage = loadImage("assets/chip.jpg");
@@ -13,6 +14,7 @@ function setup() {
 }
 
 function draw() {
+  threshold = map(mouseX, 0, width,0,255);
   background(220);
   image(sourceImage,0,0);
   loadPixels();

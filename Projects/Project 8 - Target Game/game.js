@@ -160,4 +160,8 @@ class Game {
 
         }
     }
+
+    displayTargetCount() {
+        image(targetsHitImages[this.targetsLeft])
+    }
 }
