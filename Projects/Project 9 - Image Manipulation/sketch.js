@@ -1,18 +1,14 @@
-// Project Title
-// Your Name
-// Date
+// Image Manipulation 
+// Ben Schoenfeld
+// June 20, 2022
 //
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
 
-let video;
-let GRID_SPACING = 10;
-
+function preload() {
+  sourceImage = loadImage("assets/chip.jpg");
+}
+ 
 function setup() {
-  video = createCapture(VIDEO);
-  video.hide();
-  createCanvas(640, 480);
-  textSize(GRID_SPACING);
+  createCanvas(600, 600);
 }
 
 function average(location) {
@@ -24,26 +20,26 @@ function average(location) {
 }
 
 function draw() {
+  sourceImage.loadPixels();
   background(0);
-  video.loadPixels();  //enables access to the pixel array for our video
-  //image(video,0 ,0);
-  //multiVideo();
+  
 
   //loop through all the pixels, and then apply some effect
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
-      let location = (x + y * video.width) * 4;
-      if (x % 10 === 0) {
-        setPixelColor(location, 255, 0, 0);
+      let pos = (x + y * sourceImage.width) * 4;
+      if (sourceImage.pixels[pos] > sourceImage.pixels[pos + 1]) {
+        setPixelRed();
       }
     }
   }
-  video.updatePixels();
-  image(video, 0, 0);
+  sourceImage.updatePixels();
 }
 
-function setPixelColor(pos, r, g, b) {
-  video.pixels[pos] = r;
-  video.pixels[pos + 1] = g;
-  video.pixels[pos + 2] = b;
+function setPixelRed(pos) {
+  sourceImage.pixels[pos] = (255, 0, 0);
+  sourceImage.pixels[pos + 1] = (255, 0, 0);
+  sourceImage.pixels[pos + 2] = (255, 0, 0);
+  sourceImage.pixels[pos + 3] = (255, 0, 0);
+
 }
