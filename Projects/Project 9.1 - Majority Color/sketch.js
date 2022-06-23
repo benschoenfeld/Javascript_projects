@@ -41,6 +41,7 @@ function draw() {
   image(sourceImage, 0, 0);
 }
 
+//red
 function setPixelRed(pos) {
   sourceImage.pixels[pos] = (255);
   sourceImage.pixels[pos + 1] = (0);
@@ -48,6 +49,7 @@ function setPixelRed(pos) {
 
 }
 
+//green
 function setPixelGreen(pos) {
   sourceImage.pixels[pos] = (0);
   sourceImage.pixels[pos + 1] = (255);
@@ -55,6 +57,7 @@ function setPixelGreen(pos) {
 
 }
 
+//blue
 function setPixelBlue(pos) {
   sourceImage.pixels[pos] = (0);
   sourceImage.pixels[pos + 1] = (0);

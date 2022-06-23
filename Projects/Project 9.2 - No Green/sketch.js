@@ -1,4 +1,4 @@
-// Image Manipulation - Majority Color
+// Image Manipulation - No Green
 // Ben Schoenfeld
 // June 20, 2022
 //
@@ -32,6 +32,7 @@ function draw() {
   }
 }
 
+// remove all green components
 function removeGreen(pos) {
   sourceImage.pixels[pos + 1] = (0);
 }
